@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "nishat",
+    "database": "gator_api",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}

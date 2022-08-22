@@ -1,0 +1,12 @@
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+.login-container {
+    box-shadow: -4px 2px 16px 16px #eee;
+    border-radius: 8px;
+    background-color: var(--color-white);
+}
+
+.welcome-login {
+    color: var(--color-white);
+}

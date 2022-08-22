@@ -1,0 +1,4 @@
+# for data migrations
+
+for making new migrations - npx sequelize db:migrate
+for removing change - npx sequelize db:migrate:undo 
