@@ -1,6 +1,8 @@
 import { Request, Response } from 'express'
 import User from '@src/models/users'
 import { user } from '@src/lib/response'
+import Task, { TaskSync } from '@src/models/tasks'
+import { sequelize } from '@src/db/connection'
 
 export async function readUsers(req: Request, res: Response) {
     const { page = 1, limit = 2 } = req.query
@@ -8,6 +10,13 @@ export async function readUsers(req: Request, res: Response) {
     try {
         const response = await User.findAll({
             order: [['createdAt', 'DESC']],
+            include: [
+                {
+                    model: Task,
+                    as: 'tasklist',
+                    // required: true
+                }
+            ],
             limit: +limit,
             offset: offset
         })
@@ -46,6 +55,27 @@ export async function readUser(req: Request, res: Response) {
         return res.status(200).json({
             message: user.readSuccess,
             data: response,
+        })
+    } catch (err) {
+        return res.status(400).json({
+            message: 'Bad request!',
+            error: err,
+        })
+    }
+}
+
+export async function readTasks(req: Request, res: Response) {
+    try {
+        // await TaskSync()
+        const response = await Task.findAll({
+            include: {
+                model: User,
+                as: 'userInfo'
+            }
+        })
+        return res.status(200).json({
+            message: 'Task fetched successfully',
+            data: response
         })
     } catch (err) {
         return res.status(400).json({

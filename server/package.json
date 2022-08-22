@@ -9,6 +9,7 @@
     "start": "nodemon src/server.ts",
     "start:dev": "nodemon dist/server.js",
     "start:prod": "node server.ts",
+    "generate": "npx sequelize-cli migration:generate --name <message>",
     "migrations": "npx sequelize db:migrate",
     "migrations:undo": "npx sequelize db:migrate:undo"
   },
