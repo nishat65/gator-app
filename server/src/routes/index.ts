@@ -6,9 +6,11 @@ import {
     ErrorRequestHandler,
 } from 'express'
 import userRoutes from '@src/routes/users/index'
+import taskRoutes from '@src/routes/tasks/index'
 
 export function routerConfig(app: Express) {
     app.use('/api/v1', userRoutes)
+    app.use('/api/v1', taskRoutes)
     app.use('', function (req: Request, res: Response, next: NextFunction) {
         return res.status(200).json({
             message: 'ok',
